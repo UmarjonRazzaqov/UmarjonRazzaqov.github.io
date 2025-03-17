@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>My Mini App</title>
-    s2
+    s4
     <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="Navbo_bot" data-size="large" data-onauth="onTelegramAuth(user)" data-request-access="write"></script>
     <script type="text/javascript">
   function onTelegramAuth(user) {
@@ -12,6 +12,20 @@
 </head>
 <body>
     <h1>Welcome, <span id="username"></span>!</h1>
+    <script>
+        // Initialize the Telegram Web App object
+        let tg = window.Telegram.WebApp;
+        // Display the user's first name (if available)
+        document.getElementById("username").innerText = tg.initDataUnsafe.user?.first_name || "Guest";
+
+        function sendData() {
+            // This sends data back to the bot when the button is clicked
+            tg.sendData(JSON.stringify({ action: "clicked_button" }));
+        }
+
+        // Expand the app to full-screen
+        tg.expand();
+    </script>
     <button onclick="sendData()">Send Data to Bot</button>
 
     <script>
